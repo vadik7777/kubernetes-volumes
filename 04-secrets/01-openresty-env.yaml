@@ -5,6 +5,9 @@ metadata:
   namespace: volumes-sample
   labels:
     app: openresty
+  annotations:
+    reloader.stakater.com/auto: "true"
+    configmap.reloader.stakater.com/reload: "my-secret"
 spec:
   replicas: 1
   revisionHistoryLimit: 3
@@ -43,3 +46,7 @@ spec:
             - containerPort: 80
               name: http
               protocol: TCP
+      volumes:
+        - name: my-secret
+          secret:
+            secretName: my-secret

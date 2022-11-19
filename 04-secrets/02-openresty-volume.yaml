@@ -39,7 +39,13 @@ spec:
             - mountPath: "/etc/secrets"
               name: secret-volume
               readOnly: true
+            - mountPath: "/etc/config"
+              name: config-volume
+              readOnly: true
       volumes:
         - name: secret-volume
           secret:
             secretName: user-password-secret
+        - name: config-volume
+          configMap:
+            name: env-config
